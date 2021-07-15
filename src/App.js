@@ -13,24 +13,17 @@ function App() {
 
 class App extends React.Component {
     state = {
-        count: 0,
+        isLoading: true,
+        movie: [],
     };
-    add = () => {
-        console.log("add");
-        this.setState((current) => ({ count: current.count + 1 }));
-    };
-    minus = () => {
-        console.log("minus");
-        this.setState((current) => ({ count: current.count - 1 }));
-    };
+    componentDidMount() {
+        setTimeout(() => {
+            this.setState({ isLoading: false });
+        }, 6000);
+    }
     render() {
-        return (
-            <div>
-                <h1>The number : {this.state.count}</h1>
-                <button onClick={this.add}>Add</button>
-                <button onClick={this.minus}>Minus</button>
-            </div>
-        );
+        const { isLoading } = this.state;
+        return <div>{isLoading ? "Loding..." : "We are ready."}</div>;
     }
 }
 
